@@ -1,6 +1,8 @@
 # LIFe_LM_codebook
 
 Modulare Projektarchitektur für ein KI-gestütztes Codebook-System.
+Die einzelnen Ordner lassen sich leicht erweitern und ermöglichen so eine
+schrittweise Entwicklung weiterer Module.
 
 ## Verzeichnisstruktur
 
@@ -20,6 +22,14 @@ Modulare Projektarchitektur für ein KI-gestütztes Codebook-System.
 - KI-gestützte Extraktion und Visualisierung
 - Export in verschiedene Formate
 - Benutzerfreundliche Oberfläche
+## Quick Start
+
+1. Abhängigkeiten installieren: `pip install openai streamlit faster-whisper pyyaml`
+2. `OPENAI_API_KEY` als Umgebungsvariable setzen, damit Transkription und GPT-Zugriff funktionieren.
+3. Die GUI starten mit `streamlit run frontend/streamlit_gui/streamlit_app.py`.
+   Über die Checkbox kann optional die lokale Whisper-Transkription genutzt werden (benötigt `faster-whisper`).
+4. Konsistenz der YAML-Dateien lässt sich prüfen mit `python -m core.marker_model.validate_codebook`.
+
 
 # Iterativer Projektplan
 
