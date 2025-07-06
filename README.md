@@ -7,7 +7,7 @@ schrittweise Entwicklung weiterer Module.
 ## Setup
 
 Diese Anwendung erfordert Python 3.11 oder höher und funktioniert sowohl unter
-Windows 11 als auch unter macOS 15. Die empfohlenen Schritte sind:
+Windows 11 als auch unter macOS 13 oder neuer. Die empfohlenen Schritte sind:
 
 ```bash
 python -m venv .venv
@@ -36,6 +36,36 @@ Standardbibliotheken beziehungsweise plattformneutrale Pakete.
 - KI-gestützte Extraktion und Visualisierung
 - Export in verschiedene Formate
 - Benutzerfreundliche Oberfläche
+
+## Funktionsweise
+
+Die Anwendung gliedert sich in drei Kernmodule und eine GUI:
+
+1. **Transcriber (`core/audio_input/transcriber.py`)** – wandelt Audiodateien
+   per Whisper-API in Text um. Über die Checkbox "Lokale Transkription" in der
+   Oberfläche kann stattdessen *Faster‑Whisper* ohne Internet genutzt werden.
+2. **Marker-Parser (`core/gpt_semantics/gpt_marker_parser.py`)** – sendet den
+   Text an ein GPT‑Modell (Standard `gpt-4`) und erhält die Marker als YAML.
+3. **Exporter (`core/export/marker_exporter.py`)** – schreibt die Ergebnisse als
+   YAML oder JSONL, z. B. nach `core/marker_model/` bzw.
+   `exports/markers.jsonl`.
+
+Die browserbasierte Oberfläche `frontend/streamlit_gui/streamlit_app.py`
+steuert diese Schritte und zeigt die extrahierten Marker direkt an.
+
+```
+ Text/Eingabe ─┐
+               v
+         [transcriber.py]
+               v
+     [gpt_marker_parser.py]
+               v
+        [marker_exporter.py]
+          │          │
+          │          ├─▶ core/marker_model/*.yaml
+          └──────────┴─▶ exports/markers.jsonl
+```
+
 ## Quick Start
 
 1. Abhängigkeiten installieren: `pip install openai streamlit faster-whisper pyyaml`
@@ -43,6 +73,47 @@ Standardbibliotheken beziehungsweise plattformneutrale Pakete.
 3. Die GUI starten mit `streamlit run frontend/streamlit_gui/streamlit_app.py`.
    Über die Checkbox kann optional die lokale Whisper-Transkription genutzt werden (benötigt `faster-whisper`).
 4. Konsistenz der YAML-Dateien lässt sich prüfen mit `python -m core.marker_model.validate_codebook`.
+
+## Schritt-für-Schritt-Anleitung (macOS)
+
+1. **Python 3.11 installieren:**
+   `brew install python@3.11`
+2. **Virtuelle Umgebung anlegen und aktivieren:**
+   ```bash
+   python3.11 -m venv .venv
+   source .venv/bin/activate
+   ```
+3. **Abhängigkeiten installieren:**
+   `pip install -r requirements.txt`
+4. **OpenAI-Schlüssel setzen (falls API genutzt wird):**
+   `export OPENAI_API_KEY=<dein_schluessel>`
+5. **GUI starten:**
+   `streamlit run frontend/streamlit_gui/streamlit_app.py`
+
+## Schritt-für-Schritt-Anleitung (Windows 11)
+
+1. **Python 3.11 installieren:** Die offizielle Version gibt es auf
+   [python.org](https://www.python.org/downloads/). Während der Installation
+   "Add Python to PATH" aktivieren.
+2. **Virtuelle Umgebung anlegen und aktivieren:**
+   ```cmd
+   python -m venv .venv
+   .venv\Scripts\activate
+   ```
+3. **Abhängigkeiten installieren:**
+   `pip install -r requirements.txt`
+4. **OpenAI-Schlüssel setzen (optional):**
+   `set OPENAI_API_KEY=<dein_schluessel>`
+5. **GUI starten:**
+   ```cmd
+   streamlit run frontend/streamlit_gui/streamlit_app.py
+   ```
+
+## Ideen für Erweiterungen
+
+1. **Automatisierter Datenimport:** Ein Skript könnte regelmäßig neue Text- oder Audiodateien aus definierten Ordnern einlesen und automatisch analysieren.
+2. **Verbesserte Benutzeroberfläche:** Eine integrierte Fortschrittsanzeige und vereinfachte Eingabefelder würden die Bedienung insbesondere für nicht-technische Anwender erleichtern.
+3. **Batch-Export mit Zeitplan:** Über einen Scheduler könnte das Tool periodisch alle gesammelten Marker in einen zentralen Speicher exportieren (z. B. Datenbank oder Cloud-Speicher).
 
 
 # Iterativer Projektplan
