@@ -2,6 +2,20 @@
 
 Modulare Projektarchitektur für ein KI-gestütztes Codebook-System.
 
+## Setup
+
+Diese Anwendung erfordert Python 3.11 oder höher und funktioniert sowohl unter
+Windows 11 als auch unter macOS 15. Die empfohlenen Schritte sind:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+Alle Skripte sind plattformunabhängig umgesetzt und verwenden ausschließlich
+Standardbibliotheken beziehungsweise plattformneutrale Pakete.
+
 ## Verzeichnisstruktur
 
 - core/

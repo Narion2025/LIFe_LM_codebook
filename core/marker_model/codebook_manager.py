@@ -1,7 +1,9 @@
-"""
-Codebook Manager: Verwaltung und Pflege von Marker-, Indikatoren- und Meta-Indikatoren-YAML-Dateien
-- Hinzufügen, Bearbeiten, Verlinken, Löschen
-- Konsistenzprüfung der Referenzen
+"""Codebook Manager
+===================
+
+Plattformunabhängige Werkzeuge zur Verwaltung von Marker-, Indikatoren- und
+Meta-Indikatoren. Neben dem Hinzufügen und Bearbeiten von Einträgen kann eine
+Konsistenzprüfung aller Referenzen durchgeführt werden.
 """
 import yaml
 from pathlib import Path

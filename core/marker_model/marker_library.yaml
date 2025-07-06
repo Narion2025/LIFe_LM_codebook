@@ -1,8 +1,14 @@
 # YAML-Bibliothek für Marker
 # Beispielstruktur, kann später erweitert werden
 marker_library:
-  - id: example_marker
-    typ: sprachlich
-    hinweis: Beispielmarker
-    beispiel_aussage: "Dies ist ein Beispiel."
-    linked_indicators: ["example_indicator"]
+  - id: "focus_meeting_overload"
+    typ: "strukturell"
+    hinweis: "Meetings blockieren produktive Arbeitszeit"
+    beispiel_aussage: "Wir hängen in Meetings rum – gearbeitet wird kaum noch."
+    linked_indicators: ["focus_quality", "organizational_flexibility", "overload"]
+
+  - id: "scrum_skepticism"
+    typ: "sprachlich"
+    hinweis: "Agile Methoden werden abgewertet"
+    beispiel_aussage: "Schon wieder so ein Scrum-Zeug..."
+    linked_indicators: ["method_resistance", "change_fatigue"]

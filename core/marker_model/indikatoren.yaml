@@ -1,7 +1,16 @@
 # YAML-Bibliothek für Indikatoren
 indikatoren:
-  - id: example_indicator
-    name: Beispielindikator
-    description: "Dies ist ein Beispielindikator."
-    meta_indikatoren: ["example_meta"]
-    marker_ids: ["example_marker"]
+  - id: "focus_quality"
+    name: "Arbeitsfokus"
+    meta_indikatoren: ["organizational_efficiency"]
+    marker_ids: ["focus_meeting_overload", "reality_gap"]
+
+  - id: "organizational_flexibility"
+    name: "Anpassungsfähigkeit"
+    meta_indikatoren: ["agility", "resilience"]
+    marker_ids: ["focus_meeting_overload", "scrum_skepticism", "missing_framework_consistency"]
+
+  - id: "overload"
+    name: "Überlastungspotenzial"
+    meta_indikatoren: ["burnout_risk"]
+    marker_ids: ["focus_meeting_overload", "change_overload", "fun_as_distraction"]
