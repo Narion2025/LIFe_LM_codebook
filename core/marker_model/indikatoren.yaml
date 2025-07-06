@@ -1,0 +1,7 @@
+# YAML-Bibliothek für Indikatoren
+indikatoren:
+  - id: example_indicator
+    name: Beispielindikator
+    description: "Dies ist ein Beispielindikator."
+    meta_indikatoren: ["example_meta"]
+    marker_ids: ["example_marker"]

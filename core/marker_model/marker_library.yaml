@@ -1,0 +1,8 @@
+# YAML-Bibliothek für Marker
+# Beispielstruktur, kann später erweitert werden
+marker_library:
+  - id: example_marker
+    typ: sprachlich
+    hinweis: Beispielmarker
+    beispiel_aussage: "Dies ist ein Beispiel."
+    linked_indicators: ["example_indicator"]

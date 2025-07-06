@@ -1,0 +1,6 @@
+# YAML-Bibliothek für Meta-Indikatoren
+meta_indikatoren:
+  - id: example_meta
+    name: Beispiel Meta-Indikator
+    description: "Dies ist ein Beispiel-Meta-Indikator."
+    indikator_ids: ["example_indicator"]
