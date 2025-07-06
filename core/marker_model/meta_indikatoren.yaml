@@ -1,6 +1,13 @@
 # YAML-Bibliothek für Meta-Indikatoren
 meta_indikatoren:
-  - id: example_meta
-    name: Beispiel Meta-Indikator
-    description: "Dies ist ein Beispiel-Meta-Indikator."
-    indikator_ids: ["example_indicator"]
+  - id: "agility"
+    name: "Organisatorische Agilität"
+    composed_of: ["organizational_flexibility", "method_resistance", "autonomy_degree"]
+
+  - id: "resilience"
+    name: "Kulturresilienz"
+    composed_of: ["trust_level", "authenticity", "agility"]
+
+  - id: "burnout_risk"
+    name: "Risiko für Erschöpfung"
+    composed_of: ["overload", "change_fatigue", "focus_quality"]
