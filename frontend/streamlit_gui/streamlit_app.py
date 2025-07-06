@@ -5,6 +5,9 @@ import streamlit as st
 
 from core.audio_input.transcriber import transcribe_audio
 from core.gpt_semantics.gpt_marker_parser import parse_markers
+from core.utils.env_loader import load_openai_key
+
+load_openai_key()
 
 
 st.title("LIFe Codebook Prototype")

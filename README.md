@@ -68,12 +68,19 @@ steuert diese Schritte und zeigt die extrahierten Marker direkt an.
 
 ## Quick Start
 
+
 1. Abhängigkeiten installieren: `pip install openai streamlit faster-whisper pyyaml`
 2. `OPENAI_API_KEY` als Umgebungsvariable setzen, damit Transkription und GPT-Zugriff funktionieren.
 3. Die GUI starten mit `streamlit run frontend/streamlit_gui/streamlit_app.py`.
    Über die Checkbox kann optional die lokale Whisper-Transkription genutzt werden (benötigt `faster-whisper`).
 4. Konsistenz der YAML-Dateien lässt sich prüfen mit `python -m core.marker_model.validate_codebook`.
 
+
+## Installer
+
+Für nicht-technische Anwender gibt es das Skript `installer/install_gui.py`. Es installiert alle benötigten Pakete und fragt über eine kleine GUI den `OPENAI_API_KEY` ab. Eine vorhandene `.env`-Datei kann importiert werden. Nach erfolgreicher Validierung wird der Schlüssel in `.env` gespeichert.
+
+Unter macOS startet man das Tool per Doppelklick auf `start_mac.command`, unter Windows über `start_windows.bat`.
 ## Schritt-für-Schritt-Anleitung (macOS)
 
 1. **Python 3.11 installieren:**
