@@ -3,6 +3,7 @@ import sys
 import subprocess
 import tkinter as tk
 from tkinter import filedialog, messagebox
+import importlib
 
 try:
     import openai
@@ -50,12 +51,30 @@ def import_env(entry: tk.Entry) -> None:
 def main() -> None:
     install_requirements()
 
+    global openai
+    if openai is None:
+        openai = importlib.import_module("openai")
+
+    from core.utils.env_loader import load_openai_key
+
+    existing_key = os.getenv("OPENAI_API_KEY") or load_openai_key()
+
+    # use GUI only if no valid key found
+    if existing_key and validate_key(existing_key):
+        os.environ["OPENAI_API_KEY"] = existing_key
+        with open(".env", "w", encoding="utf-8") as f:
+            f.write(f"OPENAI_API_KEY={existing_key}\n")
+        print("OPENAI_API_KEY gespeichert")
+        return
+
     root = tk.Tk()
     root.title("LIFe Installer")
 
     tk.Label(root, text="OPENAI_API_KEY:").pack(padx=10, pady=5)
     entry = tk.Entry(root, width=50, show="*")
     entry.pack(padx=10, pady=5)
+    if existing_key:
+        entry.insert(0, existing_key)
 
     def on_submit() -> None:
         key = entry.get().strip()
