@@ -22,9 +22,9 @@ def validate_key(key: str) -> bool:
     """Check if the provided OpenAI key is valid."""
     if openai is None:
         return False
-    openai.api_key = key
+    client = openai.OpenAI(api_key=key)
     try:
-        openai.Model.list()
+        client.models.list()
         return True
     except Exception:
         return False

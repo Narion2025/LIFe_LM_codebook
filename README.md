@@ -69,11 +69,24 @@ steuert diese Schritte und zeigt die extrahierten Marker direkt an.
 ## Quick Start
 
 
-1. Abhängigkeiten installieren: `pip install openai streamlit faster-whisper pyyaml`
+1. Abhängigkeiten installieren: `pip install -r requirements.txt`
 2. `OPENAI_API_KEY` als Umgebungsvariable setzen, damit Transkription und GPT-Zugriff funktionieren.
 3. Die GUI starten mit `streamlit run frontend/streamlit_gui/streamlit_app.py`.
    Über die Checkbox kann optional die lokale Whisper-Transkription genutzt werden (benötigt `faster-whisper`).
 4. Konsistenz der YAML-Dateien lässt sich prüfen mit `python -m core.marker_model.validate_codebook`.
+
+### Hinweis zu `openai`
+
+Diese Anwendung verwendet die neue [OpenAI Python-Clientbibliothek](https://github.com/openai/openai-python) ab Version 1.0.
+Alle API-Aufrufe erfolgen daher über ein `OpenAI`-Clientobjekt, z.B.:
+
+```python
+import openai
+client = openai.OpenAI(api_key="...your key...")
+client.models.list()
+```
+
+Falls versehentlich eine ältere Bibliotheksversion installiert ist, kann es zu Fehlern wie "Invalid Key" kommen. Installiere deshalb immer die Version aus `requirements.txt`.
 
 
 ## Installer
@@ -114,7 +127,15 @@ Unter macOS startet man das Tool per Doppelklick auf `start_mac.command`, unter 
 5. **GUI starten:**
    ```cmd
    streamlit run frontend/streamlit_gui/streamlit_app.py
-   ```
+```
+
+## Streamlit Deployment
+
+1. Repository auf GitHub hochladen.
+2. Auf [Streamlit Cloud](https://streamlit.io/cloud) ein neues Projekt anlegen
+   und dieses Repository verbinden.
+3. Als Hauptdatei `frontend/streamlit_gui/streamlit_app.py` angeben und
+   den `OPENAI_API_KEY` in den Secrets hinterlegen.
 
 ## Ideen für Erweiterungen
 
