@@ -18,10 +18,11 @@ def parse_markers(text: str, api_key: Optional[str] = None, model: str = "gpt-4"
     """Send text to GPT model and return YAML string with markers."""
     if openai is None:
         raise ImportError("openai package is not installed")
-    openai.api_key = api_key or os.getenv("OPENAI_API_KEY")
+
+    client = openai.OpenAI(api_key=api_key or os.getenv("OPENAI_API_KEY"))
     messages = [
         {"role": "system", "content": PROMPT_TEMPLATE},
         {"role": "user", "content": text},
     ]
-    response = openai.ChatCompletion.create(model=model, messages=messages)
+    response = client.chat.completions.create(model=model, messages=messages)
     return response.choices[0].message.content.strip()

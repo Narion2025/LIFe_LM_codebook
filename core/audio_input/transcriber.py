@@ -23,7 +23,8 @@ def transcribe_audio(audio_path: str, use_local: bool = False, api_key: Optional
 
     if openai is None:
         raise ImportError("openai package is not installed")
-    openai.api_key = api_key or os.getenv("OPENAI_API_KEY")
+
+    client = openai.OpenAI(api_key=api_key or os.getenv("OPENAI_API_KEY"))
     with open(audio_path, "rb") as f:
-        response = openai.Audio.transcribe("whisper-1", f)
-    return response.get("text", "")
+        response = client.audio.transcriptions.create(model="whisper-1", file=f)
+    return response.text
